@@ -6,6 +6,11 @@
         android:icon="@drawable/icon"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name="saman.com.color.ColorActivity">
+        </activity>
+        <activity android:name="saman.com.color.GLSurfaceActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
