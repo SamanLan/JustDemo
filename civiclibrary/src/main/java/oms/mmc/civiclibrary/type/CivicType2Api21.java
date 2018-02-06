@@ -9,11 +9,13 @@ import android.util.Log;
 
 import oms.mmc.civiclibrary.service.CivicJobService;
 
-import static oms.mmc.civiclibrary.JobSchedulerManager.CIVIC_TAG;
+import static oms.mmc.civiclibrary.CivicManager.CIVIC_TAG;
 
 /**
- * Author：zixin on 2018/2/5 12:15
- * E-mail：lanshenming@linghit.com
+ * <b>Project:</b> ${file_name}<br>
+ * <b>Create Date:</b> 2018/2/5 09:50<br>
+ * <b>Author:</b> zixin<br>
+ * <b>Description:</b>5.0以上使用
  */
 @TargetApi(21)
 public class CivicType2Api21 implements ICivicType {
@@ -41,7 +43,7 @@ public class CivicType2Api21 implements ICivicType {
         // 构建JobInfo对象，传递给JobSchedulerService
         JobInfo.Builder builder = new JobInfo.Builder(JOB_ID, new ComponentName(context, CivicJobService.class));
         // 设置每30秒执行一下任务
-        builder.setPeriodic(3000);
+        builder.setPeriodic(1500);
         // 设置设备重启时，执行该任务
         builder.setPersisted(true);
         // 当插入充电器，执行该任务

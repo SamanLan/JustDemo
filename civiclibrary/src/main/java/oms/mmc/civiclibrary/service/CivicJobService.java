@@ -8,19 +8,18 @@ import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 
-import static oms.mmc.civiclibrary.JobSchedulerManager.CIVIC_TAG;
+import static oms.mmc.civiclibrary.CivicManager.CIVIC_AVTION;
+import static oms.mmc.civiclibrary.CivicManager.CIVIC_TAG;
 
 /**
  * <b>Project:</b> ${file_name}<br>
  * <b>Create Date:</b> 2018/2/5 09:50<br>
  * <b>Author:</b> zixin<br>
- * <b>Description:</b>
+ * <b>Description:</b>5.0以上使用的东西
  */
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class CivicJobService extends JobService {
-
-    public final static String CIVIC_AVTION = "civic_action";
     // 告知编译器，这个变量不能被优化
     private volatile static Service civicJobService = null;
 

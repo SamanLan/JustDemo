@@ -6,20 +6,22 @@ import android.content.Intent;
 import oms.mmc.civiclibrary.service.CivicDoubleService;
 
 /**
- * Author：zixin on 2018/2/5 14:23
- * E-mail：lanshenming@linghit.com
+ * <b>Project:</b> ${file_name}<br>
+ * <b>Create Date:</b> 2018/2/5 09:50<br>
+ * <b>Author:</b> zixin<br>
+ * <b>Description:</b>7.0以下使用
  */
 
-public class CivicTypeLessApi21 implements ICivicType{
+public class CivicTypeLessApi24 implements ICivicType{
     private Context context;
 
-    public CivicTypeLessApi21(Context context) {
-        this.context = context;
+    public CivicTypeLessApi24(Context context) {
+        this.context = context.getApplicationContext();
     }
 
     @Override
     public String getName() {
-        return "思域保活模式--小于API21";
+        return "思域保活模式--小于API24";
     }
 
     @Override

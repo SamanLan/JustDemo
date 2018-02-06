@@ -11,8 +11,10 @@ import android.util.Log;
 import oms.mmc.civic.ICivicDamonAidlInterface;
 
 /**
- * Author：zixin on 2018/2/5 15:07
- * E-mail：lanshenming@linghit.com
+ * <b>Project:</b> ${file_name}<br>
+ * <b>Create Date:</b> 2018/2/5 09:50<br>
+ * <b>Author:</b> zixin<br>
+ * <b>Description:</b>一个binder服务，其实这个没什么鸟用。
  */
 
 public class CivicDamonService extends Service {
@@ -22,20 +24,21 @@ public class CivicDamonService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        Log.d(TAG, "守护服务bind");
+        System.out.println("守护服务bind");
         return civicDamonBinder.asBinder();
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TAG, "守护服务onCreate");
+        System.out.println("守护服务onCreate");
         civicDamonBinder = new CivicDamonBinder();
     }
 
     @Override
     public void unbindService(ServiceConnection conn) {
         super.unbindService(conn);
+        System.out.println("守护服务unbindService，将重启doubleservice");
         startService(new Intent(this, CivicDoubleService.class));
     }
 

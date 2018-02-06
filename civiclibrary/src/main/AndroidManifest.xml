@@ -7,15 +7,18 @@
         <service android:name=".service.CivicJobService"
                  android:permission="android.permission.BIND_JOB_SERVICE"/>
         <!-- 思域双重前台服务 -->
-        <service android:name=".service.CivicDoubleService"/>
-        <service android:name=".service.CivicDoubleService$InnerService"/>
+        <service android:name=".service.CivicDoubleService"
+            android:process=":channel"/>
+        <service android:name=".service.CivicDoubleService$InnerService"
+            android:process=":channel"/>
         <!-- 思域服务端守护进程服务 -->
         <service android:name=".service.CivicDamonService"
-            android:process=":remote"/>
+            android:process=":channel"/>
         <receiver android:name=".receiver.CivicReceiver"
             android:exported="true">
             <intent-filter android:priority="0x7fffffff">
                 <action android:name="civic_action"/>
+                <action android:name="com.mmc.umpush.msg.coming"/>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.DATE_CHANGED" />
                 <action android:name="android.intent.action.TIME_SET" />

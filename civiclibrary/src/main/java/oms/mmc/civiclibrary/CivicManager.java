@@ -1,5 +1,6 @@
 package oms.mmc.civiclibrary;
 
+import android.content.Context;
 import android.os.Build;
 import android.support.annotation.MainThread;
 import android.util.Log;
@@ -10,29 +11,37 @@ import java.util.Iterator;
 import java.util.List;
 
 import oms.mmc.civiclibrary.type.CivicType2Api21;
+import oms.mmc.civiclibrary.type.CivicTypeLessApi24;
 import oms.mmc.civiclibrary.type.ICivicType;
 
 /**
- * Author：zixin on 2018/2/5 10:24
- * E-mail：lanshenming@linghit.com
+ * <b>Project:</b> ${file_name}<br>
+ * <b>Create Date:</b> 2018/2/5 09:50<br>
+ * <b>Author:</b> zixin<br>
+ * <b>Description:</b>管理器
  */
 
-public class JobSchedulerManager {
+public class CivicManager {
     public final static String CIVIC_TAG = "Civic";
+    public final static String CIVIC_AVTION = "civic_action";
     private static final int JOB_ID = 1;
-    private static JobSchedulerManager jobManager;
+    private static CivicManager jobManager;
     private List<ICivicType> typeList;
 
-    private JobSchedulerManager() {
+    private CivicManager() {
         this.typeList = new ArrayList<>();
     }
 
     @MainThread
-    public static JobSchedulerManager getJobSchedulerInstance() {
+    public static CivicManager getJobSchedulerInstance() {
         if (jobManager == null) {
-            jobManager = new JobSchedulerManager();
+            jobManager = new CivicManager();
         }
         return jobManager;
+    }
+
+    public void startNormal(Context context) {
+        jobManager.setTypeList(new CivicTypeLessApi24(context), new CivicType2Api21(context)).startJobScheduler();
     }
 
     public void startJobScheduler() {
@@ -59,22 +68,23 @@ public class JobSchedulerManager {
         }
     }
 
-    public JobSchedulerManager setTypeList(ICivicType... civicTypes) {
+    public CivicManager setTypeList(ICivicType... civicTypes) {
         if (typeList == null) {
             typeList = new ArrayList<>();
         } else {
             typeList.clear();
         }
         List<ICivicType> tmp = Arrays.asList(civicTypes);
-        if (isBelowLOLLIPOP()) {
-            Iterator<ICivicType> it = tmp.iterator();
-            while (it.hasNext()) {
-                ICivicType type = it.next();
+        Iterator<ICivicType> it = tmp.iterator();
+        while (it.hasNext()) {
+            ICivicType type = it.next();
+            if (isBelowLOLLIPOP()) {
                 if (type instanceof CivicType2Api21) {
                     it.remove();
                 }
             }
         }
+
         typeList.addAll(tmp);
         return this;
     }
@@ -82,5 +92,10 @@ public class JobSchedulerManager {
     private boolean isBelowLOLLIPOP() {
         // API< 21
         return Build.VERSION.SDK_INT < 21;
+    }
+
+    private boolean isAboveNougat() {
+        // API< 21
+        return Build.VERSION.SDK_INT >= 24;
     }
 }
