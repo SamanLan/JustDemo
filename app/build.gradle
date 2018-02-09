@@ -26,4 +26,5 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile project(':civiclibrary')
+    compile project(':LibMarsdaemon')
 }
